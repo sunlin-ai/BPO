@@ -6,33 +6,11 @@
 </div>
 
 <p align="center">
-  📄 <a href="https://openreview.net/pdf?id=VsqQzsMYbg" target="_blank">Paper</a> &nbsp; | &nbsp;
+  📄 <a href="https://arxiv.org/abs/2506.03557" target="_blank">Paper</a> &nbsp; | &nbsp;
   🌐 <a href="https://huggingface.co/datasets/Open-Reasoner-Zero/orz_math_57k_collection" target="_blank">Dataset</a> &nbsp; | &nbsp;
-  📘 <a href="https://huggingface.co/GAIR/ToRL-7B" target="_blank">Model</a>
+  📘 <a href="https://huggingface.co/sunlin-ai/bpo" target="_blank">Model</a>
 </p>
 
-
-<div align="center">
-<img src="assets/dpovsbpo.png" width="700" alt="torl-abstarct-1">
-</div>
-
-> In DPO, the rewards for chosen responses can drop below zero, whereas in our BPO, they remain positive and continue to increase. A smaller gap adaptor α reduces the penalty on rejected responses, while a larger α shifts the focus toward improving chosen responses, resulting in more balanced and effective updates
-
-
-<div align="center">
-<img src="assets/performance_dpovsbpo.png" width="700" alt="torl-abstarct-2">
-</div>
-
-> **Overall performance across five competition-level benchmarks.** BPO achieves an average score of 28.9% using Llama-3.1-8B-Instruct policy generator, and 46.7% with Qwen2.5-Math-7B. This represents a substantial improvement over DPO, yielding average gains of +10.1% and +11.7%, respectively.
-
-
-## Releases
-
-[2025/05/30] We're releasing the following components:
-
-- 🚀 **Training**: Complete implementation of our training pipeline
-- 🔥 **[BPO Dataset](https://github.com/GAIR-NLP/ToRL/tree/main/data/torl_data)**: Our curated dataset of 28k mathematical questions
-- 🤖 **[BPO Model](https://huggingface.co/GAIR/ToRL)**: Model training with BPO.
 
 ## Overview
 
@@ -74,7 +52,7 @@ it shows that BPO consistently outperforms DPO across all configurations and dat
 | Qwen2.5-Math-7B-Instruct| DPO    | 10.0     | 77.0    | 60.0    | 28.7         | 38.1           | 42.8  |
 |                         | BPO    | **20.0** | **82.4**| **60.0**| **40.8**     | **40.6**       | **48.8** |
 
-### Cognitive Behavior via RL Scaling
+### Reward Margin Compare
 
 Performance comparison between the relative reward margin $x_1 - x_2$ and the 
 balanced reward margin $\min(x_1, -x_2)$ under different loss functions. The proposed 
@@ -115,6 +93,15 @@ Execute the following command to evaluate the trained model.
 bash math_evaluation/sh/evaluate_all_bench.sh
 ```
 
+## Releases
+
+[2025/05/30] We're releasing the following components:
+
+- 🚀 **Training**: Complete implementation of our training pipeline.
+- 🔥 **[BPO Dataset](https://huggingface.co/datasets/Open-Reasoner-Zero/orz_math_57k_collection)**: Our curated dataset of 28k mathematical questions (to be update).
+- 🤖 **[BPO Model](https://huggingface.co/sunlin-ai/bpo)**: Model training with BPO (to be update).
+
+
 ## Acknowledgements
 
 Our work builds upon the insightful technical reports from [Cal-DPO](https://arxiv.org/pdf/2412.14516) and [DPOP](https://arxiv.org/pdf/2402.13228). We extend our appreciation to the [Qwen-Math](https://github.com/QwenLM/Qwen2.5-Math) team for their open-source model, to the creators of [TRL](https://github.com/huggingface/trl) and [vLLM](https://github.com/vllm-project/vllm) for providing the essential reinforcement learning framework and inference infrastructure, respectively, that enabled this research. 
@@ -124,11 +111,13 @@ Our work builds upon the insightful technical reports from [Cal-DPO](https://arx
 If you find this work useful, please cite our paper:
 
 ```bibtex
-@misc{lin2025bpo,
+@misc{sun2025bpo,
       title={BPO: Revisiting Preference Modeling in Direct Preference Optimization}, 
-      author={Lin Sun, Chuang Liu, Peng Liu, Bingyang Li, Weijia Lu, Ning Wu},
+      author={Lin Sun and Chuang Liu and Peng Liu and Bingyang Li and Weijia Lu and Ning Wu},
       year={2025},
+      eprint={2506.03557},
+      archivePrefix={arXiv},
       primaryClass={cs.CL},
-      url={https://openreview.net/pdf?id=VsqQzsMYbg}, 
+      url={https://arxiv.org/abs/2506.03557}, 
 }
 ```
